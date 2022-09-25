@@ -21,14 +21,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -70,9 +74,26 @@ fun SearchBar(
 // Step: Align your body - Alignment
 @Composable
 fun AlignYourBodyElement(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier, @DrawableRes drawableRes: Int, @StringRes stringRes: Int
 ) {
-    // Implement composable here
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Image(
+            painter = painterResource(drawableRes),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape)
+        )
+        Text(
+            text = stringResource(stringRes),
+            style = MaterialTheme.typography.h3,
+            modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp)
+        )
+    }
 }
 
 // Step: Favorite collection card - Material Surface
@@ -148,7 +169,7 @@ private data class DrawableStringPair(
     @StringRes val text: Int
 )
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun SearchBarPreview() {
     MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
@@ -159,12 +180,14 @@ fun SearchBarPreview() {
 fun AlignYourBodyElementPreview() {
     MySootheTheme {
         AlignYourBodyElement(
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(8.dp),
+            drawableRes = R.drawable.ab1_inversions,
+            stringRes = R.string.ab1_inversions
         )
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
     MySootheTheme {
@@ -174,37 +197,37 @@ fun FavoriteCollectionCardPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
     MySootheTheme { FavoriteCollectionsGrid() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyRowPreview() {
     MySootheTheme { AlignYourBodyRow() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun HomeSectionPreview() {
     MySootheTheme { HomeSection() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun ScreenContentPreview() {
     MySootheTheme { HomeScreen() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun BottomNavigationPreview() {
     MySootheTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
 }
 
-@Preview(widthDp = 360, heightDp = 640)
+//@Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun MySoothePreview() {
     MySootheApp()
